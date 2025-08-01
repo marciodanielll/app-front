@@ -7,7 +7,6 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.126",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
     "react": "^19.1.1",
@@ -45,9 +44,14 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.4",
+    "@types/node": "^24.1.0",
     "@vitejs/plugin-react": "^4.7.0",
     "@vitest/ui": "^3.2.4",
+    "autoprefixer": "^10.4.21",
     "jsdom": "^26.1.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11",
+    "vite": "^7.0.6",
     "vitest": "^3.2.4"
   }
 }
