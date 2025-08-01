@@ -27,15 +27,17 @@ export function Login() {
       <Card variant="glass" className="w-full max-w-md relative">
         {/* Logo/Icon */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl mb-4">
-            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl mb-4">
+            <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <circle cx="12" cy="8" r="5" strokeWidth={2}/>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.5 10.5L10 12l4-4"/>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 18v1a1 1 0 001 1h8a1 1 0 001-1v-1"/>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 18l1-5h8l1 5H7z"/>
             </svg>
           </div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-            HealthApp
+            MindCare
           </h1>
-          <p className="text-gray-600">Bem-vindo de volta</p>
         </div>
 
         {/* Form */}
@@ -43,20 +45,18 @@ export function Login() {
           <Input
             id="email"
             type="email"
-            label="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="seu@email.com"
+            placeholder="Email"
             required
           />
 
           <Input
             id="password"
             type="password"
-            label="Senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="••••••••"
+            placeholder="Senha"
             required
             showPasswordToggle
           />
