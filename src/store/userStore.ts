@@ -6,6 +6,7 @@ interface UserState {
   id: string | null;
   name: string | null;
   email: string | null;
+  password: string | null;
   birthDate: string | null;
   phone: string | null;
   age: number | null;
@@ -16,6 +17,7 @@ interface UserActions {
   setUser: (user: User) => void;
   setName: (name: string) => void;
   setEmail: (email: string) => void;
+  setPassword: (password: string) => void;
   setBirthDate: (birthDate: string) => void;
   setPhone: (phone: string) => void;
   setAge: (age: number) => void;
@@ -31,6 +33,7 @@ export const useUserStore = create<UserStore>()(
       id: null,
       name: null,
       email: null,
+      password: null,
       birthDate: null,
       phone: null,
       age: null,
@@ -41,6 +44,7 @@ export const useUserStore = create<UserStore>()(
           id: user.id,
           name: user.name,
           email: user.email,
+          password: user.password,
           birthDate: user.birthDate,
           phone: user.phone,
           age: user.age,
@@ -48,6 +52,7 @@ export const useUserStore = create<UserStore>()(
         }),
       setName: (name: string) => set({ name }),
       setEmail: (email: string) => set({ email }),
+      setPassword: (password: string) => set({ password }),
       setBirthDate: (birthDate: string) => set({ birthDate }),
       setPhone: (phone: string) => set({ phone }),
       setAge: (age: number) => set({ age }),
@@ -57,6 +62,7 @@ export const useUserStore = create<UserStore>()(
           id: null,
           name: null,
           email: null,
+          password: null,
           birthDate: null,
           phone: null,
           age: null,

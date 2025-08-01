@@ -2,13 +2,14 @@ export interface User {
   id: string;
   name: string;
   email: string;
+  password: string;
   birthDate: string;
   phone: string;
   age: number;
   role: string;
 }
 
-export interface CreateUserRequestDTO {
+export interface CreateUserRequest {
   name: string;
   email: string;
   password: string;
@@ -16,14 +17,7 @@ export interface CreateUserRequestDTO {
   phone: string;
 }
 
-export interface AppState {
-  user: User | null;
-  isLoading: boolean;
-  isAuthenticated: boolean;
-  token: string | null;
-}
-
-export interface AuthenticateUserResponseDTO {
+export interface AuthenticateUserResponse {
   user?: {
     id: string;
     email: string;
