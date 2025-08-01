@@ -25,7 +25,7 @@ export function Input({
       onChange={onChange}
       disabled={disabled}
       required={required}
-      className={`w-full px-4 py-3 bg-gray-800 border border-gray-600 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-trust-400 focus:border-transparent transition-all duration-200 ${className}`}
+      className={`w-full px-4 py-3 bg-white border border-emerald-300 text-emerald-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200 ${className}`}
     />
   );
 }

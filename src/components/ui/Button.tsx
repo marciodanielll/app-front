@@ -1,7 +1,7 @@
 interface ButtonProps {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary';
-  color?: 'vital' | 'trust' | 'energy' | 'calm' | 'care' | 'fresh';
+  color?: 'vital' | 'trust' | 'energy' | 'calm' | 'care' | 'fresh' | 'emerald';
   size?: 'sm' | 'md' | 'lg';
   disabled?: boolean;
   onClick?: () => void;
@@ -11,7 +11,7 @@ interface ButtonProps {
 export function Button({
   children,
   variant = 'primary',
-  color = 'trust',
+  color = 'emerald',
   size = 'md',
   disabled = false,
   onClick,
