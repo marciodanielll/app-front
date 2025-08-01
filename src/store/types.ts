@@ -1,22 +1,37 @@
-// Tipos para as stores da aplicação
-
 export interface User {
   id: string;
   name: string;
   email: string;
+  birthDate: string;
+  phone: string;
+  age: number;
+  role: string;
+}
+
+export interface CreateUserRequestDTO {
+  name: string;
+  email: string;
+  password: string;
+  birthDate: string;
+  phone: string;
 }
 
 export interface AppState {
-  // Exemplo de estados que você pode ter
   user: User | null;
   isLoading: boolean;
-  theme: "light" | "dark";
+  isAuthenticated: boolean;
+  token: string | null;
 }
 
-// Tipos para actions
-export interface AppActions {
-  setUser: (user: User | null) => void;
-  setLoading: (loading: boolean) => void;
-  toggleTheme: () => void;
-  clearStore: () => void;
+export interface AuthenticateUserResponseDTO {
+  user?: {
+    id: string;
+    email: string;
+    age: number;
+    name: string;
+    role: string;
+  };
+  accessToken: string;
+  refreshToken: string;
+  accessTokenExpiresAt: Date;
 }
