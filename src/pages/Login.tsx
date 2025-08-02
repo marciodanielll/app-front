@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../components/ui/Input";
 import { authService } from "../services/authService";
-import { useLogin, useSetUser, useIsLoading, useSetLoading } from "../store";
+import { useSetAuthenticated, useSetAccessToken, useSetRefreshToken, useSetTokenExpiration, useSetUser, useIsLoading, useSetLoading } from "../store";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -11,7 +11,10 @@ export function Login() {
   const navigate = useNavigate();
 
   const isLoading = useIsLoading();
-  const login = useLogin();
+  const setAuthenticated = useSetAuthenticated();
+  const setAccessToken = useSetAccessToken();
+  const setRefreshToken = useSetRefreshToken();
+  const setTokenExpiration = useSetTokenExpiration();
   const setUser = useSetUser();
   const setLoading = useSetLoading();
 
@@ -33,7 +36,10 @@ export function Login() {
 
       const expirationDate = new Date(response.accessTokenExpiresAt);
 
-      login(response.accessToken, response.refreshToken, expirationDate);
+      setAccessToken(response.accessToken);
+      setRefreshToken(response.refreshToken);
+      setTokenExpiration(expirationDate);
+      setAuthenticated(true);
       if (response.user) {
         setUser({
           id: response.user.id,
