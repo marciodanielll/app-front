@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Input } from "../components/ui/Input";
 import { Button } from "../components/ui/Button";
 import { Card } from "../components/ui/Card";
@@ -9,6 +10,7 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const isLoading = useIsLoading();
   const login = useLogin();
@@ -48,6 +50,8 @@ export function Login() {
       }
 
       console.log("🎉 Login concluído com sucesso!");
+      
+      navigate("/journey");
     } catch (error) {
       console.error("❌ Erro no login:", error);
       setError("Email ou senha inválidos");
