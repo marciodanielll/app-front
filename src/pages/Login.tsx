@@ -72,15 +72,15 @@ export function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-800 to-slate-900 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-vital-700 to-vital-900 flex flex-col">
       {/* Login Container */}
       <div className="flex-1 flex flex-col justify-center px-6 py-12">
         <div className="w-full max-w-sm mx-auto">
           {/* Logo/Icon */}
           <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-indigo-600 rounded-3xl mb-4 shadow-lg">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-3xl mb-4 shadow-lg border border-vital-200">
             <svg
-              className="w-10 h-10 text-indigo-200"
+              className="w-10 h-10 text-vital-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -93,16 +93,16 @@ export function Login() {
               />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold text-white mb-1">
+          <h1 className="text-3xl font-bold text-white mb-1 drop-shadow-lg">
             TCC
           </h1>
-          <p className="text-slate-300 text-sm">Bem-vindo de volta</p>
+          <p className="text-white/90 text-sm drop-shadow-md">Bem-vindo de volta</p>
         </div>
 
           {/* Form */}
           <div className="space-y-6">
           {error && (
-            <div className="bg-red-900/30 border-l-4 border-red-400 text-red-300 px-4 py-3 rounded-r text-sm">
+            <div className="bg-red-50 border-l-4 border-red-400 text-red-700 px-4 py-3 rounded-r text-sm">
               {error}
             </div>
           )}
@@ -115,7 +115,7 @@ export function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
                 required
-                className="h-14 px-4 text-base bg-slate-700 border-slate-600 text-white placeholder-slate-400 rounded-xl hover:bg-slate-600 hover:border-slate-500 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200 outline-none autofill:bg-slate-700 autofill:text-white"
+                className="h-14 px-4 text-base bg-white border-gray-200 text-gray-800 placeholder-gray-400 rounded-xl hover:bg-white hover:border-vital-400 focus:ring-2 focus:ring-vital-500 focus:border-vital-500 focus:bg-white transition-all duration-200 outline-none shadow-md autofill:bg-white autofill:text-gray-800 [&:not(:placeholder-shown)]:bg-white [&:not(:placeholder-shown)]:border-vital-400 [&:not(:placeholder-shown)]:ring-1 [&:not(:placeholder-shown)]:ring-vital-300/50"
               />
 
               <Input
@@ -126,7 +126,7 @@ export function Login() {
                 placeholder="Senha"
                 required
                 showPasswordToggle
-                className="h-14 px-4 text-base bg-slate-700 border-slate-600 text-white placeholder-slate-400 rounded-xl hover:bg-slate-600 hover:border-slate-500 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200 outline-none autofill:bg-slate-700 autofill:text-white"
+                className="h-14 px-4 text-base bg-white border-gray-200 text-gray-800 placeholder-gray-400 rounded-xl hover:bg-white hover:border-vital-400 focus:ring-2 focus:ring-vital-500 focus:border-vital-500 focus:bg-white transition-all duration-200 outline-none shadow-md autofill:bg-white autofill:text-gray-800 [&:not(:placeholder-shown)]:bg-white [&:not(:placeholder-shown)]:border-vital-400 [&:not(:placeholder-shown)]:ring-1 [&:not(:placeholder-shown)]:ring-vital-300/50"
               />
             </div>
 
@@ -134,13 +134,13 @@ export function Login() {
             <label className="flex items-center">
               <input
                 type="checkbox"
-                className="w-4 h-4 rounded border-slate-600 bg-slate-700 text-blue-400 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-all duration-200"
+                className="w-4 h-4 rounded border-gray-200 bg-white text-vital-600 focus:ring-2 focus:ring-vital-500 focus:border-vital-500 transition-all duration-200"
               />
-              <span className="ml-3 text-sm text-slate-300">Lembrar de mim</span>
+              <span className="ml-3 text-sm text-white/90 drop-shadow-sm">Lembrar de mim</span>
             </label>
             <button
               type="button"
-              className="text-sm text-blue-400 hover:text-blue-300 font-medium transition-colors duration-200"
+              className="text-sm text-vital-300 hover:text-vital-200 font-medium transition-colors duration-200 drop-shadow-sm"
             >
               Esqueceu a senha?
             </button>
@@ -153,7 +153,7 @@ export function Login() {
                 handleLogin();
               }}
               disabled={isLoading}
-              className="w-full h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 active:from-blue-800 active:to-indigo-800 disabled:from-slate-700 disabled:to-slate-700 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-blue-500/25 hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:scale-100 text-lg border border-blue-500/20 hover:border-blue-400/40"
+              className="w-full h-14 bg-gradient-to-r from-[#059669] to-[#047857] hover:from-[#10b981] hover:to-[#059669] active:from-[#047857] active:to-[#065f46] disabled:from-gray-400 disabled:to-gray-400 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-green-600/30 hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:scale-100 text-lg border border-green-600/30 hover:border-green-500/50"
             >
               <div className="flex items-center justify-center space-x-2">
                 {isLoading ? (
@@ -173,11 +173,11 @@ export function Login() {
 
           {/* Register link */}
           <div className="mt-8 text-center">
-            <p className="text-sm text-slate-300">
+            <p className="text-sm text-white/90 drop-shadow-sm">
               Não tem uma conta?{" "}
               <button
                 onClick={handleRegister}
-                className="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-200"
+                className="text-vital-300 hover:text-vital-200 font-semibold transition-colors duration-200 drop-shadow-sm"
               >
                 Cadastre-se
               </button>
@@ -186,19 +186,19 @@ export function Login() {
 
           {/* Social Login */}
           <div className="mt-12">
-          <div className="relative">
+                      <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-slate-600"></div>
+              <div className="w-full border-t border-white/30"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-slate-800 text-slate-400">
+              <span className="px-4 py-2 bg-white/10 backdrop-blur-sm text-white/90 rounded-lg shadow-lg border border-white/20 font-medium">
                 Ou continue com
               </span>
             </div>
           </div>
 
             <div className="mt-8 grid grid-cols-2 gap-4">
-              <button className="group w-full inline-flex items-center justify-center py-4 px-4 border border-slate-600 rounded-xl shadow-sm bg-slate-700 text-sm font-semibold text-slate-300 hover:bg-slate-600 hover:border-slate-500 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]">
+              <button className="group w-full inline-flex items-center justify-center py-4 px-4 border border-gray-200 rounded-xl shadow-md bg-white text-sm font-semibold text-gray-700 hover:bg-gray-50 hover:border-vital-400 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]">
                 <div className="flex items-center space-x-3">
                   <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
                     <svg className="w-4 h-4" viewBox="0 0 24 24">
@@ -220,18 +220,18 @@ export function Login() {
                       />
                     </svg>
                   </div>
-                  <span className="group-hover:text-white transition-colors">Google</span>
+                  <span className="group-hover:text-gray-800 transition-colors">Google</span>
                 </div>
               </button>
 
-              <button className="group w-full inline-flex items-center justify-center py-4 px-4 border border-slate-600 rounded-xl shadow-sm bg-slate-700 text-sm font-semibold text-slate-300 hover:bg-slate-600 hover:border-slate-500 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]">
+              <button className="group w-full inline-flex items-center justify-center py-4 px-4 border border-gray-200 rounded-xl shadow-md bg-white text-sm font-semibold text-gray-700 hover:bg-gray-50 hover:border-vital-400 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]">
                 <div className="flex items-center space-x-3">
-                  <div className="w-5 h-5 text-white">
+                  <div className="w-5 h-5 text-gray-800">
                     <svg fill="currentColor" viewBox="0 0 24 24">
                       <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                     </svg>
                   </div>
-                  <span className="group-hover:text-white transition-colors">Apple</span>
+                  <span className="group-hover:text-gray-800 transition-colors">Apple</span>
                 </div>
               </button>
             </div>

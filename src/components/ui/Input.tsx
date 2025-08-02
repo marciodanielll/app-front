@@ -63,14 +63,14 @@ export function Input({
           required={required}
           className={`w-full px-4 py-3 border rounded-xl focus:ring-2 transition-all duration-200 ${
             showPasswordToggle && type === "password" ? "pr-12" : ""
-          } ${className || "border-gray-300 bg-gray-50 focus:bg-white focus:ring-blue-500 focus:border-transparent"}`}
+          } ${className || "border-gray-300 bg-gray-50 focus:bg-white focus:ring-vital-500 focus:border-transparent"}`}
         />
 
         {showPasswordToggle && type === "password" && (
           <button
             type="button"
             onClick={togglePasswordVisibility}
-            className="absolute inset-y-0 right-0 flex items-center pr-3 text-white hover:text-gray-200 transition-colors"
+            className="absolute inset-y-0 right-0 flex items-center pr-3 text-vital-700 hover:text-vital-800 transition-colors"
           >
             {showPassword ? (
               // Ícone de olho aberto (mostrando senha)

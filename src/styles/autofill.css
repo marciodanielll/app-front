@@ -1,4 +1,4 @@
-/* Fix para autofill do navegador manter cores escuras */
+/* Fix para autofill do navegador manter cores claras */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -7,11 +7,11 @@ textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus,
 textarea:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px rgb(51 65 85) inset !important; /* slate-700 */
-  -webkit-text-fill-color: white !important;
-  caret-color: white !important;
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: rgb(31 41 55) !important; /* gray-800 */
+  caret-color: rgb(31 41 55) !important;
 }
 
 input:-webkit-autofill::first-line {
-  color: white !important;
+  color: rgb(31 41 55) !important; /* gray-800 */
 }

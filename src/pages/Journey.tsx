@@ -8,7 +8,7 @@ import {
   useResetAll,
 } from "../store";
 import { journeyService } from "../services/journeyService";
-import { Save, Loader2, Mic, MicOff } from "lucide-react";
+import { Save, Loader2, Mic, MicOff, Volume2, VolumeX } from "lucide-react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
