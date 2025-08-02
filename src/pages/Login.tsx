@@ -69,15 +69,15 @@ export function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-slate-800 to-slate-900 flex flex-col">
       {/* Login Container */}
       <div className="flex-1 flex flex-col justify-center px-6 py-12">
         <div className="w-full max-w-sm mx-auto">
           {/* Logo/Icon */}
           <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gray-800 rounded-3xl mb-4 shadow-lg">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-indigo-600 rounded-3xl mb-4 shadow-lg">
             <svg
-              className="w-10 h-10 text-gray-300"
+              className="w-10 h-10 text-indigo-200"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -93,13 +93,13 @@ export function Login() {
           <h1 className="text-3xl font-bold text-white mb-1">
             TCC
           </h1>
-          <p className="text-gray-400 text-sm">Bem-vindo de volta</p>
+          <p className="text-slate-300 text-sm">Bem-vindo de volta</p>
         </div>
 
           {/* Form */}
           <div className="space-y-6">
           {error && (
-            <div className="bg-red-900/20 border-l-4 border-red-500 text-red-400 px-4 py-3 rounded-r text-sm">
+            <div className="bg-red-900/30 border-l-4 border-red-400 text-red-300 px-4 py-3 rounded-r text-sm">
               {error}
             </div>
           )}
@@ -112,7 +112,7 @@ export function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
                 required
-                className="h-14 px-4 text-base bg-gray-800 border-gray-700 text-white placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-gray-600 focus:border-transparent"
+                className="h-14 px-4 text-base bg-slate-700 border-slate-600 text-white placeholder-slate-400 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               />
 
               <Input
@@ -123,7 +123,7 @@ export function Login() {
                 placeholder="Senha"
                 required
                 showPasswordToggle
-                className="h-14 px-4 text-base bg-gray-800 border-gray-700 text-white placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-gray-600 focus:border-transparent"
+                className="h-14 px-4 text-base bg-slate-700 border-slate-600 text-white placeholder-slate-400 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               />
             </div>
 
@@ -131,13 +131,13 @@ export function Login() {
             <label className="flex items-center">
               <input
                 type="checkbox"
-                className="w-4 h-4 rounded border-gray-600 bg-gray-800 text-gray-300 focus:ring-gray-500"
+                className="w-4 h-4 rounded border-slate-600 bg-slate-700 text-indigo-400 focus:ring-indigo-500"
               />
-              <span className="ml-3 text-sm text-gray-400">Lembrar de mim</span>
+              <span className="ml-3 text-sm text-slate-300">Lembrar de mim</span>
             </label>
             <button
               type="button"
-              className="text-sm text-gray-300 hover:text-white font-medium"
+              className="text-sm text-indigo-400 hover:text-indigo-300 font-medium"
             >
               Esqueceu a senha?
             </button>
