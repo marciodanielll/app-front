@@ -14,11 +14,7 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 
 export function Journey() {
-  const [title, setTitle] = useState("");
   const [text, setText] = useState("");
-  const [speechTarget, setSpeechTarget] = useState<"title" | "text" | null>(
-    null
-  );
   const navigate = useNavigate();
 
   const token = useAccessToken();
@@ -34,36 +30,26 @@ export function Journey() {
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
 
-  const startTitleListening = () => {
+  const startListening = () => {
     resetTranscript();
-    setSpeechTarget("title");
-    SpeechRecognition.startListening({ language: "pt-BR", continuous: true });
-  };
-
-  const startTextListening = () => {
-    resetTranscript();
-    setSpeechTarget("text");
     SpeechRecognition.startListening({ language: "pt-BR", continuous: true });
   };
 
   const stopListening = () => {
     SpeechRecognition.stopListening();
 
-    if (speechTarget === "title" && transcript) {
-      setTitle((prev) => prev + (prev ? " " : "") + transcript);
-    } else if (speechTarget === "text" && transcript) {
+    if (transcript) {
       setText((prev) => prev + (prev ? " " : "") + transcript);
     }
 
-    setSpeechTarget(null);
     resetTranscript();
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!title.trim() || !text.trim()) {
-      alert("Por favor, preencha todos os campos");
+    if (!text.trim()) {
+      alert("Por favor, escreva algo sobre seu dia");
       return;
     }
 
@@ -77,18 +63,17 @@ export function Journey() {
 
       const newEntry = await journeyService.createJournal(
         {
-          title: title.trim(),
+          title: "Reflexão do dia",
           text: text.trim(),
         },
         token
       );
 
       addEntry({
-        title: title.trim(),
+        title: "Reflexão do dia",
         text: text.trim(),
       });
 
-      setTitle("");
       setText("");
 
       alert("Entrada criada com sucesso!");
@@ -192,57 +177,11 @@ export function Journey() {
       {/* Main Content - Takes all available space */}
       <div className="flex-1 p-3 flex flex-col min-h-0">
         <form onSubmit={handleSubmit} className="flex-1 flex flex-col min-h-0">
-          {/* Title Input - Compact */}
-          <div className="mb-3 flex-shrink-0">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Como foi seu dia?"
-                value={
-                  title +
-                  (speechTarget === "title" && transcript
-                    ? " " + transcript
-                    : "")
-                }
-                onChange={(e) => setTitle(e.target.value)}
-                className="w-full h-9 px-3 pr-12 text-sm border border-slate-600 rounded-lg hover:bg-slate-600 hover:border-slate-500 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200 bg-slate-700 text-white placeholder-slate-400 shadow-sm outline-none autofill:bg-slate-700 autofill:text-white"
-                disabled={isLoading}
-              />
-              {browserSupportsSpeechRecognition && (
-                <button
-                  type="button"
-                  onClick={
-                    listening && speechTarget === "title"
-                      ? stopListening
-                      : startTitleListening
-                  }
-                  className={`absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-md transition-all duration-200 ${
-                    listening && speechTarget === "title"
-                      ? "bg-red-500 hover:bg-red-600 text-white shadow-lg shadow-red-500/25"
-                      : "bg-blue-500 hover:bg-blue-600 text-white shadow-lg hover:shadow-blue-500/25"
-                  }`}
-                  disabled={
-                    isLoading || (listening && speechTarget !== "title")
-                  }
-                >
-                  {listening && speechTarget === "title" ? (
-                    <MicOff className="w-3 h-3" />
-                  ) : (
-                    <Mic className="w-3 h-3" />
-                  )}
-                </button>
-              )}
-            </div>
-          </div>
-
           {/* Textarea - Takes ALL remaining space */}
           <div className="flex-1 min-h-0 relative mb-3">
             <textarea
               placeholder="Conte-me sobre seus pensamentos, sentimentos e reflexões de hoje..."
-              value={
-                text +
-                (speechTarget === "text" && transcript ? " " + transcript : "")
-              }
+              value={text + (listening && transcript ? " " + transcript : "")}
               onChange={(e) => setText(e.target.value)}
               className="absolute inset-0 w-full h-full p-3 pr-12 border border-slate-600 rounded-lg 
                        hover:bg-slate-600 hover:border-slate-500
@@ -255,19 +194,15 @@ export function Journey() {
             {browserSupportsSpeechRecognition && (
               <button
                 type="button"
-                onClick={
-                  listening && speechTarget === "text"
-                    ? stopListening
-                    : startTextListening
-                }
+                onClick={listening ? stopListening : startListening}
                 className={`absolute top-3 right-3 p-2 rounded-md transition-all duration-200 z-10 ${
-                  listening && speechTarget === "text"
+                  listening
                     ? "bg-red-500 hover:bg-red-600 text-white shadow-lg shadow-red-500/25"
                     : "bg-blue-500 hover:bg-blue-600 text-white shadow-lg hover:shadow-blue-500/25"
                 }`}
-                disabled={isLoading || (listening && speechTarget !== "text")}
+                disabled={isLoading}
               >
-                {listening && speechTarget === "text" ? (
+                {listening ? (
                   <MicOff className="w-4 h-4" />
                 ) : (
                   <Mic className="w-4 h-4" />
@@ -280,9 +215,7 @@ export function Journey() {
           {listening && (
             <div className="mb-3 flex items-center justify-center space-x-2 p-2 bg-blue-500/20 border border-blue-400/30 rounded-lg">
               <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-              <span className="text-sm text-blue-300">
-                Escutando {speechTarget === "title" ? "título" : "texto"}...
-              </span>
+              <span className="text-sm text-blue-300">Escutando...</span>
               {transcript && (
                 <span className="text-xs text-slate-300 italic">
                   "{transcript}"
@@ -302,7 +235,7 @@ export function Journey() {
           {/* Button - Fixed at bottom */}
           <button
             type="submit"
-            disabled={isLoading || !title.trim() || !text.trim()}
+            disabled={isLoading || !text.trim()}
             className="w-full h-12 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:from-emerald-600 hover:via-teal-600 hover:to-cyan-600 active:from-emerald-700 active:via-teal-700 active:to-cyan-700 disabled:from-slate-700 disabled:to-slate-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-emerald-500/25 hover:scale-[1.03] active:scale-[0.97] disabled:cursor-not-allowed disabled:scale-100 text-sm flex-shrink-0 border border-emerald-400/20 hover:border-emerald-400/40"
           >
             <div className="flex items-center justify-center space-x-2">
