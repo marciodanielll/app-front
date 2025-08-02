@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAccessToken, useAddJourneyEntry, useSetJourneyLoading, useIsJourneyLoading, useResetAll } from "../store";
 import { journeyService } from "../services/journeyService";
+import { Save, Loader2 } from "lucide-react";
 
 export function Journey() {
   const [title, setTitle] = useState("");
@@ -136,19 +137,19 @@ export function Journey() {
             disabled={isLoading || !title.trim() || !text.trim()}
             className="w-full h-12 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:from-emerald-600 hover:via-teal-600 hover:to-cyan-600 active:from-emerald-700 active:via-teal-700 active:to-cyan-700 disabled:from-slate-700 disabled:to-slate-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-emerald-500/25 hover:scale-[1.03] active:scale-[0.97] disabled:cursor-not-allowed disabled:scale-100 text-sm flex-shrink-0 border border-emerald-400/20 hover:border-emerald-400/40"
           >
-            {isLoading ? (
-              <div className="flex items-center justify-center space-x-2">
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                <span>Salvando...</span>
-              </div>
-            ) : (
-              <div className="flex items-center justify-center space-x-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Salvar Reflexão</span>
-              </div>
-            )}
+            <div className="flex items-center justify-center space-x-2">
+              {isLoading ? (
+                <>
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <span>Salvando...</span>
+                </>
+              ) : (
+                <>
+                  <Save className="w-5 h-5" />
+                  <span>Salvar Reflexão</span>
+                </>
+              )}
+            </div>
           </button>
         </form>
       </div>
