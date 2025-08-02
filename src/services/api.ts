@@ -1,78 +1,129 @@
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import environment from "../config/environment";
 
 class ApiService {
-  private baseUrl: string;
+  private api: AxiosInstance;
 
   constructor() {
-    this.baseUrl = environment.baseUrl;
-  }
-
-  private async request<T>(
-    endpoint: string,
-    options: RequestInit = {}
-  ): Promise<T> {
-    const url = `${this.baseUrl}${endpoint}`;
-
-    const config: RequestInit = {
+    this.api = axios.create({
+      baseURL: environment.baseUrl,
       headers: {
         "Content-Type": "application/json",
-        ...options.headers,
       },
-      ...options,
-    };
+      timeout: 10000,
+    });
 
-    try {
-      const response = await fetch(url, config);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+    this.api.interceptors.request.use(
+      (config) => {
+        console.log(
+          `🌐 API Request: ${config.method?.toUpperCase()} ${config.url}`
+        );
+        return config;
+      },
+      (error) => {
+        console.error("❌ Request error:", error);
+        return Promise.reject(error);
       }
+    );
 
-      return await response.json();
-    } catch (error) {
-      console.error("API request failed:", error);
-      throw error;
-    }
+    this.api.interceptors.response.use(
+      (response) => {
+        console.log(
+          `✅ API Response: ${response.status} ${response.config.url}`
+        );
+        return response;
+      },
+      (error) => {
+        console.error(
+          "❌ Response error:",
+          error.response?.data || error.message
+        );
+        return Promise.reject(error);
+      }
+    );
   }
 
-  async get<T>(endpoint: string): Promise<T> {
-    return this.request<T>(endpoint, { method: "GET" });
+  private async request<T>(config: AxiosRequestConfig): Promise<T> {
+    const response: AxiosResponse<T> = await this.api.request(config);
+    return response.data;
   }
 
-  async post<T>(endpoint: string, data?: any): Promise<T> {
-    return this.request<T>(endpoint, {
+  async get<T>(endpoint: string, config?: AxiosRequestConfig): Promise<T> {
+    const response = await this.request<T>({
+      method: "GET",
+      url: endpoint,
+      ...config,
+    });
+    return response;
+  }
+
+  async post<T>(
+    endpoint: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
+    const response = await this.request<T>({
       method: "POST",
-      body: data ? JSON.stringify(data) : undefined,
+      url: endpoint,
+      data,
+      ...config,
     });
+    return response;
   }
 
-  async put<T>(endpoint: string, data?: any): Promise<T> {
-    return this.request<T>(endpoint, {
+  async put<T>(
+    endpoint: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
+    const response = await this.request<T>({
       method: "PUT",
-      body: data ? JSON.stringify(data) : undefined,
+      url: endpoint,
+      data,
+      ...config,
     });
+    return response;
   }
 
-  async delete<T>(endpoint: string): Promise<T> {
-    return this.request<T>(endpoint, { method: "DELETE" });
+  async delete<T>(endpoint: string, config?: AxiosRequestConfig): Promise<T> {
+    const response = await this.request<T>({
+      method: "DELETE",
+      url: endpoint,
+      ...config,
+    });
+    return response;
   }
 
   async authorizedRequest<T>(
     endpoint: string,
-    options: RequestInit = {},
+    config: AxiosRequestConfig = {},
     token?: string
   ): Promise<T> {
-    const authHeaders: Record<string, string> = token
-      ? { Authorization: `Bearer ${token}` }
-      : {};
-
-    return this.request<T>(endpoint, {
-      ...options,
+    const authConfig: AxiosRequestConfig = {
+      ...config,
       headers: {
-        ...options.headers,
-        ...authHeaders,
+        ...config.headers,
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
+    };
+
+    const response = await this.request<T>({
+      url: endpoint,
+      ...authConfig,
     });
+    return response;
+  }
+
+  setAuthToken(token: string | null) {
+    if (token) {
+      this.api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    } else {
+      delete this.api.defaults.headers.common["Authorization"];
+    }
+  }
+
+  getInstance(): AxiosInstance {
+    return this.api;
   }
 }
 
