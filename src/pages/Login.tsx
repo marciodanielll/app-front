@@ -2,13 +2,68 @@ import { useState } from 'react';
 import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
+import { authService } from '../services/authService';
+import { useLogin, useSetUser, useIsLoading, useSetLoading } from '../store';
 
 export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleLogin = () => {
-    console.log('Login:', { email, password });
+  // Hooks do Zustand com arquitetura de slices
+  const isLoading = useIsLoading();
+  const login = useLogin();
+  const setUser = useSetUser();
+  const setLoading = useSetLoading();
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      setError('Email e senha são obrigatórios');
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError('');
+
+      console.log('🔄 Iniciando login...');
+      
+      // Chama o endpoint /auth/login
+      const response = await authService.login({ email, password });
+      
+      console.log('✅ Login realizado com sucesso:', response);
+
+      // Converte a data de expiração
+      const expirationDate = new Date(response.accessTokenExpiresAt);
+
+      // Salvar tokens no estado de auth
+      login(
+        response.accessToken,
+        response.refreshToken,
+        expirationDate
+      );
+
+      // Salvar dados do usuário no estado de user
+      if (response.user) {
+        setUser({
+          id: response.user.id,
+          name: response.user.name,
+          email: response.user.email,
+          password: '', // Não salvar senha
+          birthDate: '',
+          phone: '',
+          age: response.user.age,
+          role: response.user.role,
+        });
+      }
+
+      console.log('🎉 Login concluído com sucesso!');
+    } catch (error) {
+      console.error('❌ Erro no login:', error);
+      setError('Email ou senha inválidos');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleRegister = () => {
@@ -42,6 +97,12 @@ export function Login() {
 
         {/* Form */}
         <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+              {error}
+            </div>
+          )}
+
           <Input
             id="email"
             type="email"
@@ -75,8 +136,9 @@ export function Login() {
             type="submit"
             variant="gradient"
             className="w-full"
+            disabled={isLoading}
           >
-            Entrar
+            {isLoading ? 'Entrando...' : 'Entrar'}
           </Button>
         </form>
 

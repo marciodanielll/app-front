@@ -1,5 +1,5 @@
 import { apiService } from "./api";
-import { AuthenticateUserResponse } from "../store/types";
+import { AuthenticateUserResponse } from "../types";
 
 export interface LoginRequest {
   email: string;
