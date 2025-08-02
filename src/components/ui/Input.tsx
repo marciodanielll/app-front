@@ -61,9 +61,9 @@ export function Input({
           onKeyDown={onKeyDown}
           disabled={disabled}
           required={required}
-          className={`w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white ${
+          className={`w-full px-4 py-3 border rounded-xl focus:ring-2 transition-all duration-200 ${
             showPasswordToggle && type === "password" ? "pr-12" : ""
-          } ${className}`}
+          } ${className || "border-gray-300 bg-gray-50 focus:bg-white focus:ring-blue-500 focus:border-transparent"}`}
         />
 
         {showPasswordToggle && type === "password" && (
