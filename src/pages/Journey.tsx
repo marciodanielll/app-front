@@ -111,7 +111,7 @@ export function Journey() {
               placeholder="Como foi seu dia?"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full h-9 px-3 text-sm border border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200 bg-slate-700 text-white placeholder-slate-400 shadow-sm hover:bg-slate-650"
+              className="w-full h-9 px-3 text-sm border border-slate-600 rounded-lg hover:bg-slate-600 hover:border-slate-500 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200 bg-slate-700 text-white placeholder-slate-400 shadow-sm outline-none"
               disabled={isLoading}
             />
           </div>
@@ -122,9 +122,10 @@ export function Journey() {
             value={text}
             onChange={(e) => setText(e.target.value)}
             className="flex-1 w-full p-3 border border-slate-600 rounded-lg 
+                     hover:bg-slate-600 hover:border-slate-500
                      focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600
                      bg-slate-700 text-white placeholder-slate-400 resize-none text-sm transition-all duration-200
-                     disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:bg-slate-650
+                     disabled:opacity-50 disabled:cursor-not-allowed shadow-sm outline-none
                      mb-3 min-h-0"
             disabled={isLoading}
           />

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../components/ui/Input";
 import { authService } from "../services/authService";
-import { useSetAuthenticated, useSetAccessToken, useSetRefreshToken, useSetTokenExpiration, useSetUser, useIsLoading, useSetLoading } from "../store";
+import { useStore, useSetUser, useIsLoading, useSetLoading } from "../store";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -11,12 +11,14 @@ export function Login() {
   const navigate = useNavigate();
 
   const isLoading = useIsLoading();
-  const setAuthenticated = useSetAuthenticated();
-  const setAccessToken = useSetAccessToken();
-  const setRefreshToken = useSetRefreshToken();
-  const setTokenExpiration = useSetTokenExpiration();
   const setUser = useSetUser();
   const setLoading = useSetLoading();
+  
+  // Usando acesso direto ao store para evitar problemas
+  const setAuthenticated = useStore((state) => state.auth.setAuthenticated);
+  const setAccessToken = useStore((state) => state.auth.setAccessToken);
+  const setRefreshToken = useStore((state) => state.auth.setRefreshToken);
+  const setTokenExpiration = useStore((state) => state.auth.setTokenExpiration);
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -112,7 +114,7 @@ export function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
                 required
-                className="h-14 px-4 text-base bg-slate-700 border-slate-600 text-white placeholder-slate-400 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200"
+                className="h-14 px-4 text-base bg-slate-700 border-slate-600 text-white placeholder-slate-400 rounded-xl hover:bg-slate-600 hover:border-slate-500 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200 outline-none"
               />
 
               <Input
@@ -123,7 +125,7 @@ export function Login() {
                 placeholder="Senha"
                 required
                 showPasswordToggle
-                className="h-14 px-4 text-base bg-slate-700 border-slate-600 text-white placeholder-slate-400 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200"
+                className="h-14 px-4 text-base bg-slate-700 border-slate-600 text-white placeholder-slate-400 rounded-xl hover:bg-slate-600 hover:border-slate-500 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200 outline-none"
               />
             </div>
 
