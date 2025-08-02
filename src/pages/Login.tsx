@@ -69,15 +69,15 @@ export function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black flex flex-col">
       {/* Login Container */}
       <div className="flex-1 flex flex-col justify-center px-6 py-12">
         <div className="w-full max-w-sm mx-auto">
           {/* Logo/Icon */}
           <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-600 rounded-3xl mb-4 shadow-lg">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gray-800 rounded-3xl mb-4 shadow-lg">
             <svg
-              className="w-10 h-10 text-white"
+              className="w-10 h-10 text-gray-300"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -90,16 +90,16 @@ export function Login() {
               />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-1">
+          <h1 className="text-3xl font-bold text-white mb-1">
             TCC
           </h1>
-          <p className="text-gray-500 text-sm">Bem-vindo de volta</p>
+          <p className="text-gray-400 text-sm">Bem-vindo de volta</p>
         </div>
 
           {/* Form */}
           <div className="space-y-6">
           {error && (
-            <div className="bg-red-50 border-l-4 border-red-400 text-red-700 px-4 py-3 rounded-r text-sm">
+            <div className="bg-red-900/20 border-l-4 border-red-500 text-red-400 px-4 py-3 rounded-r text-sm">
               {error}
             </div>
           )}
@@ -112,7 +112,7 @@ export function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
                 required
-                className="h-14 px-4 text-base border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="h-14 px-4 text-base bg-gray-800 border-gray-700 text-white placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-gray-600 focus:border-transparent"
               />
 
               <Input
@@ -123,7 +123,7 @@ export function Login() {
                 placeholder="Senha"
                 required
                 showPasswordToggle
-                className="h-14 px-4 text-base border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="h-14 px-4 text-base bg-gray-800 border-gray-700 text-white placeholder-gray-400 rounded-xl focus:ring-2 focus:ring-gray-600 focus:border-transparent"
               />
             </div>
 
@@ -131,13 +131,13 @@ export function Login() {
             <label className="flex items-center">
               <input
                 type="checkbox"
-                className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                className="w-4 h-4 rounded border-gray-600 bg-gray-800 text-gray-300 focus:ring-gray-500"
               />
-              <span className="ml-3 text-sm text-gray-600">Lembrar de mim</span>
+              <span className="ml-3 text-sm text-gray-400">Lembrar de mim</span>
             </label>
             <button
               type="button"
-              className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+              className="text-sm text-gray-300 hover:text-white font-medium"
             >
               Esqueceu a senha?
             </button>
@@ -150,7 +150,7 @@ export function Login() {
                 handleLogin();
               }}
               disabled={isLoading}
-              className="w-full h-14 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold rounded-xl transition-colors duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed text-lg"
+              className="w-full h-14 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 text-white font-semibold rounded-xl transition-colors duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed text-lg"
             >
               {isLoading ? "Entrando..." : "Entrar"}
             </button>
@@ -158,11 +158,11 @@ export function Login() {
 
           {/* Register link */}
           <div className="mt-8 text-center">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-400">
               Não tem uma conta?{" "}
               <button
                 onClick={handleRegister}
-                className="text-blue-600 hover:text-blue-700 font-semibold transition-colors"
+                className="text-gray-300 hover:text-white font-semibold transition-colors"
               >
                 Cadastre-se
               </button>
@@ -173,17 +173,17 @@ export function Login() {
           <div className="mt-8">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300"></div>
+              <div className="w-full border-t border-gray-700"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">
+              <span className="px-2 bg-gray-900 text-gray-400">
                 Ou continue com
               </span>
             </div>
           </div>
 
             <div className="mt-6 grid grid-cols-2 gap-4">
-              <button className="w-full inline-flex items-center justify-center py-4 px-4 border border-gray-200 rounded-xl shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200 hover:shadow-md">
+              <button className="w-full inline-flex items-center justify-center py-4 px-4 border border-gray-700 rounded-xl shadow-sm bg-gray-800 text-sm font-medium text-gray-300 hover:bg-gray-700 transition-all duration-200 hover:shadow-md">
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
                   fill="#4285F4"
@@ -205,7 +205,7 @@ export function Login() {
               <span className="ml-2">Google</span>
             </button>
 
-              <button className="w-full inline-flex items-center justify-center py-4 px-4 border border-gray-200 rounded-xl shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200 hover:shadow-md">
+              <button className="w-full inline-flex items-center justify-center py-4 px-4 border border-gray-700 rounded-xl shadow-sm bg-gray-800 text-sm font-medium text-gray-300 hover:bg-gray-700 transition-all duration-200 hover:shadow-md">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M18.8906 14.7969C18.7813 12.1406 21.0156 10.8281 21.125 10.7656C19.8594 8.84375 17.8438 8.5625 17.125 8.53125C15.3906 8.35938 13.7188 9.54688 12.8438 9.54688C11.9531 9.54688 10.5938 8.5625 9.14063 8.59375C7.29688 8.625 5.57813 9.70313 4.60938 11.4688C2.60938 15.0469 4.09375 20.4688 6.01563 23.4688C6.96875 24.9219 8.09375 26.5469 9.59375 26.4844C11.0156 26.4219 11.5625 25.5781 13.3125 25.5781C15.0469 25.5781 15.5625 26.4844 17.0469 26.4531C18.5781 26.4219 19.5469 25.0156 20.4688 23.5469C21.5469 21.8906 21.9688 20.2656 21.9844 20.1875C21.9531 20.1719 18.9219 19.0156 18.8906 14.7969ZM15.9844 6.84375C16.7656 5.9375 17.2813 4.71875 17.1563 3.5C16.0781 3.54688 14.7656 4.25 13.9531 5.125C13.2188 5.90625 12.5625 7.15625 12.7031 8.34375C13.9219 8.4375 15.1719 7.71875 15.9844 6.84375Z" />
               </svg>

@@ -63,31 +63,31 @@ export function Journey() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-gray-900 flex flex-col">
       {/* Header - Fixed at top */}
-      <div className="bg-white shadow-sm">
+      <div className="bg-gray-800 shadow-sm">
         {/* Navigation Bar */}
         <div className="flex items-center justify-between p-3">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-8 h-8 bg-gray-700 rounded-lg flex items-center justify-center">
+              <svg className="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
               </svg>
             </div>
             <div>
-              <h1 className="text-sm font-bold text-gray-900">TCC</h1>
-              <p className="text-xs text-gray-500">Diário Pessoal</p>
+              <h1 className="text-sm font-bold text-white">TCC</h1>
+              <p className="text-xs text-gray-400">Diário Pessoal</p>
             </div>
           </div>
           
           <div className="flex items-center space-x-2">
-            <button onClick={handleViewHistory} disabled className="p-2 bg-gray-100 rounded-lg opacity-50 cursor-not-allowed">
-              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button onClick={handleViewHistory} disabled className="p-2 bg-gray-700 rounded-lg opacity-50 cursor-not-allowed">
+              <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </button>
-            <button onClick={handleLogout} className="p-2 bg-red-50 hover:bg-red-100 rounded-lg transition-colors">
-              <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button onClick={handleLogout} className="p-2 bg-red-900/20 hover:bg-red-900/30 rounded-lg transition-colors">
+              <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
               </svg>
             </button>
@@ -96,8 +96,8 @@ export function Journey() {
         
         {/* Welcome Section */}
         <div className="text-center px-3 pb-3">
-          <h2 className="text-sm font-semibold text-gray-900">Como você está se sentindo hoje?</h2>
-          <p className="text-xs text-gray-600">Documente seus pensamentos e reflexões do dia</p>
+          <h2 className="text-sm font-semibold text-white">Como você está se sentindo hoje?</h2>
+          <p className="text-xs text-gray-400">Documente seus pensamentos e reflexões do dia</p>
         </div>
       </div>
 
@@ -111,7 +111,7 @@ export function Journey() {
               placeholder="Como foi seu dia?"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full h-9 px-3 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white focus:bg-white shadow-sm"
+              className="w-full h-9 px-3 text-sm border border-gray-700 rounded-lg focus:ring-2 focus:ring-gray-600 focus:border-transparent transition-all duration-200 bg-gray-800 text-white placeholder-gray-400 shadow-sm"
               disabled={isLoading}
             />
           </div>
@@ -121,9 +121,9 @@ export function Journey() {
             placeholder="Conte-me sobre seus pensamentos, sentimentos e reflexões de hoje..."
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className="flex-1 w-full p-3 border border-gray-200 rounded-lg 
-                     focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                     bg-white resize-none text-sm transition-all duration-200
+            className="flex-1 w-full p-3 border border-gray-700 rounded-lg 
+                     focus:ring-2 focus:ring-gray-600 focus:border-transparent
+                     bg-gray-800 text-white placeholder-gray-400 resize-none text-sm transition-all duration-200
                      disabled:opacity-50 disabled:cursor-not-allowed shadow-sm
                      mb-3 min-h-0"
             disabled={isLoading}
@@ -133,7 +133,7 @@ export function Journey() {
           <button
             type="submit"
             disabled={isLoading || !title.trim() || !text.trim()}
-            className="w-full h-11 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed text-sm flex-shrink-0"
+            className="w-full h-11 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 text-white font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed text-sm flex-shrink-0"
           >
             {isLoading ? (
               <div className="flex items-center justify-center space-x-2">
