@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   useAccessToken,
@@ -15,6 +15,8 @@ import SpeechRecognition, {
 
 export function Journey() {
   const [text, setText] = useState("");
+  const [isActivelyListening, setIsActivelyListening] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const navigate = useNavigate();
 
   const token = useAccessToken();
@@ -29,6 +31,35 @@ export function Journey() {
     resetTranscript,
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
+
+  // Detecta quando o usuário para de falar
+  useEffect(() => {
+    if (transcript && listening) {
+      setIsActivelyListening(true);
+      
+      // Limpa o timeout anterior se existir
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      
+      // Define um novo timeout para detectar quando parar de falar
+      timeoutRef.current = setTimeout(() => {
+        setIsActivelyListening(false);
+      }, 1500); // 1.5 segundos sem falar
+    } else if (!transcript) {
+      setIsActivelyListening(false);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    }
+
+    // Cleanup function
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [transcript, listening]);
 
   const startListening = () => {
     resetTranscript();
@@ -205,14 +236,20 @@ export function Journey() {
                   onClick={listening ? stopListening : startListening}
                   className={`absolute top-4 right-4 p-3 rounded-xl transition-all duration-200 z-10 shadow-lg ${
                     listening
-                      ? "bg-gradient-to-r from-vital-500 to-vital-600 hover:from-vital-600 hover:to-vital-700 text-white shadow-vital-500/25"
-                      : "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white shadow-red-500/25"
+                      ? isActivelyListening
+                        ? "bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white shadow-green-500/25 voice-speaking"
+                        : "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white shadow-red-500/25 voice-listening"
+                      : "bg-gradient-to-r from-vital-500 to-vital-600 hover:from-vital-600 hover:to-vital-700 text-white shadow-vital-500/25"
                   }`}
                   disabled={isLoading}
                   title={listening ? "Parar de escutar" : "Falar para escrever"}
                 >
                   {listening ? (
-                    <Mic className="w-5 h-5 animate-pulse" />
+                    <Mic
+                      className={`w-5 h-5 ${
+                        isActivelyListening ? "animate-bounce" : "animate-pulse"
+                      }`}
+                    />
                   ) : (
                     <MicOff className="w-5 h-5" />
                   )}

@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { Login } from './pages/Login';
 import { Journey } from './pages/Journey';
 import { JourneyHistory } from './pages/JourneyHistory';
+import VoiceRecognition from './pages/VoiceRecognition';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { useIsAuthenticated } from './store';
 
@@ -32,6 +33,10 @@ function App() {
               <JourneyHistory />
             </ProtectedRoute>
           } 
+        />
+        <Route 
+          path="/voice-recognition" 
+          element={<VoiceRecognition />} 
         />
         <Route 
           path="/" 
