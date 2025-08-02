@@ -2,6 +2,7 @@ import { StateCreator } from "zustand";
 import { UserState, UserActions } from "../../types/user";
 import { AuthState, AuthActions } from "../../types/auth";
 import { AppState, AppActions } from "../../types/app";
+import { JourneyState, JourneyActions } from "../../types/journey";
 
 export const initialUserState: UserState = {
   id: null,
@@ -18,6 +19,7 @@ interface CombinedStore {
   auth: AuthState & AuthActions;
   user: UserState & UserActions;
   app: AppState & AppActions;
+  journey: JourneyState & JourneyActions;
   resetAll: () => void;
 }
 
