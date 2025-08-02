@@ -7,7 +7,10 @@ import { JourneyState, JourneyActions } from "../types/journey";
 import { createAuthSlice, initialAuthState } from "./slices/auth.slice";
 import { createUserSlice, initialUserState } from "./slices/user.slice";
 import { createAppSlice, initialAppState } from "./slices/app.slice";
-import { createJourneySlice, initialJourneyState } from "./slices/journey.slice";
+import {
+  createJourneySlice,
+  initialJourneyState,
+} from "./slices/journey.slice";
 
 interface CombinedStore {
   auth: AuthState & AuthActions;
@@ -87,7 +90,7 @@ export {
 export {
   useJourneyEntries,
   useCurrentJourneyEntry,
-  useJourneyLoading,
+  useIsJourneyLoading,
   useAddJourneyEntry,
   useUpdateJourneyEntry,
   useDeleteJourneyEntry,
