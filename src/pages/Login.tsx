@@ -65,20 +65,20 @@ export function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center p-4">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-100 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse"></div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center p-3 sm:p-4">
+      {/* Background decoration - hidden on mobile for performance */}
+      <div className="absolute inset-0 overflow-hidden hidden sm:block">
+        <div className="absolute -top-40 -right-40 w-60 h-60 sm:w-80 sm:h-80 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-60 h-60 sm:w-80 sm:h-80 bg-indigo-100 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse"></div>
       </div>
 
       {/* Login Card */}
-      <Card variant="glass" className="w-full max-w-md relative">
+      <Card variant="glass" className="w-full max-w-sm sm:max-w-md relative">
         {/* Logo/Icon */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl mb-4">
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl mb-3 sm:mb-4">
             <svg
-              className="w-12 h-12 text-white"
+              className="w-8 h-8 sm:w-12 sm:h-12 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -104,14 +104,14 @@ export function Login() {
               />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
             M.D. Care
           </h1>
         </div>
 
         {/* Form */}
         <form
-          className="space-y-6"
+          className="space-y-4 sm:space-y-6"
           onSubmit={(e) => {
             e.preventDefault();
             handleLogin();
@@ -142,7 +142,7 @@ export function Login() {
             showPasswordToggle
           />
 
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0">
             <label className="flex items-center">
               <input
                 type="checkbox"
@@ -152,7 +152,7 @@ export function Login() {
             </label>
             <button
               type="button"
-              className="text-sm text-blue-600 hover:text-blue-500 font-medium"
+              className="text-sm text-blue-600 hover:text-blue-500 font-medium text-left sm:text-right"
             >
               Esqueceu a senha?
             </button>
@@ -169,8 +169,8 @@ export function Login() {
         </form>
 
         {/* Register link */}
-        <div className="mt-8 text-center">
-          <p className="text-gray-600">
+        <div className="mt-6 sm:mt-8 text-center">
+          <p className="text-sm sm:text-base text-gray-600">
             Não tem uma conta?{" "}
             <button
               onClick={handleRegister}
@@ -182,7 +182,7 @@ export function Login() {
         </div>
 
         {/* Social Login */}
-        <div className="mt-8">
+        <div className="mt-6 sm:mt-8">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-300"></div>

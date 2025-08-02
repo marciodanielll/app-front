@@ -69,44 +69,44 @@ export function Journey() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-4">
-      <div className="relative max-w-3xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-3 sm:p-4 lg:p-6">
+      <div className="relative max-w-full sm:max-w-2xl lg:max-w-3xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex justify-between items-center mb-6">
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0 mb-4 sm:mb-6">
             <Button
               onClick={handleViewHistory}
               disabled
-              className="bg-gray-400 text-gray-600 cursor-not-allowed"
+              className="w-full sm:w-auto bg-gray-400 text-gray-600 cursor-not-allowed text-sm sm:text-base"
             >
               Ver Histórico
             </Button>
             <Button
               onClick={handleLogout}
-              className="bg-indigo-600 hover:bg-indigo-700 text-white"
+              className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white text-sm sm:text-base"
             >
               Sair
             </Button>
           </div>
           
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+          <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3 sm:mb-4">
             TCC
           </h1>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-600 text-base sm:text-lg px-2 sm:px-0">
             Documente seus pensamentos e reflexões do dia
           </p>
         </div>
 
         {/* Form */}
-        <Card variant="glass" className="p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
+        <Card variant="glass" className="p-4 sm:p-6 lg:p-8">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             <div>
               <Input
                 type="text"
                 placeholder="Título da sua reflexão..."
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="text-lg"
+                className="text-base sm:text-lg"
                 disabled={isLoading}
               />
             </div>
@@ -116,21 +116,21 @@ export function Journey() {
                 placeholder="Escreva aqui seus pensamentos, sentimentos ou reflexões do dia..."
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                className="w-full min-h-[300px] p-4 border border-gray-200 rounded-lg 
+                className="w-full min-h-[200px] sm:min-h-[300px] p-3 sm:p-4 border border-gray-200 rounded-lg 
                          focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                         bg-white/70 backdrop-blur-sm resize-none
+                         bg-white/70 backdrop-blur-sm resize-none text-sm sm:text-base
                          disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={isLoading}
               />
             </div>
 
-            <div className="flex gap-4">
+            <div className="pt-2">
               <Button
                 type="submit"
                 disabled={isLoading || !title.trim() || !text.trim()}
-                className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 
-                         hover:from-blue-700 hover:to-purple-700 text-white
-                         disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 
+                         hover:from-blue-700 hover:to-purple-700 text-white text-sm sm:text-base
+                         disabled:opacity-50 disabled:cursor-not-allowed py-3 sm:py-2"
               >
                 {isLoading ? "Salvando..." : "Salvar Entrada"}
               </Button>
