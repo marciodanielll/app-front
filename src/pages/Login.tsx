@@ -112,7 +112,7 @@ export function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
                 required
-                className="h-14 px-4 text-base bg-slate-700 border-slate-600 text-white placeholder-slate-400 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="h-14 px-4 text-base bg-slate-700 border-slate-600 text-white placeholder-slate-400 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200"
               />
 
               <Input
@@ -123,7 +123,7 @@ export function Login() {
                 placeholder="Senha"
                 required
                 showPasswordToggle
-                className="h-14 px-4 text-base bg-slate-700 border-slate-600 text-white placeholder-slate-400 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="h-14 px-4 text-base bg-slate-700 border-slate-600 text-white placeholder-slate-400 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200"
               />
             </div>
 
@@ -131,13 +131,13 @@ export function Login() {
             <label className="flex items-center">
               <input
                 type="checkbox"
-                className="w-4 h-4 rounded border-slate-600 bg-slate-700 text-indigo-400 focus:ring-indigo-500"
+                className="w-4 h-4 rounded border-slate-600 bg-slate-700 text-blue-400 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-all duration-200"
               />
               <span className="ml-3 text-sm text-slate-300">Lembrar de mim</span>
             </label>
             <button
               type="button"
-              className="text-sm text-indigo-400 hover:text-indigo-300 font-medium"
+              className="text-sm text-blue-400 hover:text-blue-300 font-medium transition-colors duration-200"
             >
               Esqueceu a senha?
             </button>
@@ -150,7 +150,7 @@ export function Login() {
                 handleLogin();
               }}
               disabled={isLoading}
-              className="w-full h-14 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-700 text-white font-semibold rounded-xl transition-colors duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed text-lg"
+              className="w-full h-14 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:bg-slate-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:scale-100 text-lg"
             >
               {isLoading ? "Entrando..." : "Entrar"}
             </button>
@@ -162,7 +162,7 @@ export function Login() {
               Não tem uma conta?{" "}
               <button
                 onClick={handleRegister}
-                className="text-indigo-400 hover:text-indigo-300 font-semibold transition-colors"
+                className="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-200"
               >
                 Cadastre-se
               </button>

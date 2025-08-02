@@ -111,7 +111,7 @@ export function Journey() {
               placeholder="Como foi seu dia?"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full h-9 px-3 text-sm border border-slate-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 bg-slate-700 text-white placeholder-slate-400 shadow-sm"
+              className="w-full h-9 px-3 text-sm border border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200 bg-slate-700 text-white placeholder-slate-400 shadow-sm hover:bg-slate-650"
               disabled={isLoading}
             />
           </div>
@@ -122,9 +122,9 @@ export function Journey() {
             value={text}
             onChange={(e) => setText(e.target.value)}
             className="flex-1 w-full p-3 border border-slate-600 rounded-lg 
-                     focus:ring-2 focus:ring-indigo-500 focus:border-transparent
+                     focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600
                      bg-slate-700 text-white placeholder-slate-400 resize-none text-sm transition-all duration-200
-                     disabled:opacity-50 disabled:cursor-not-allowed shadow-sm
+                     disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:bg-slate-650
                      mb-3 min-h-0"
             disabled={isLoading}
           />
@@ -133,7 +133,7 @@ export function Journey() {
           <button
             type="submit"
             disabled={isLoading || !title.trim() || !text.trim()}
-            className="w-full h-11 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-700 text-white font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed text-sm flex-shrink-0"
+            className="w-full h-11 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 active:from-emerald-800 active:to-teal-800 disabled:from-slate-700 disabled:to-slate-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:scale-100 text-sm flex-shrink-0"
           >
             {isLoading ? (
               <div className="flex items-center justify-center space-x-2">
