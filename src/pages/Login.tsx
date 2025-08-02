@@ -114,7 +114,7 @@ export function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
                 required
-                className="h-14 px-4 text-base bg-slate-700 border-slate-600 text-white placeholder-slate-400 rounded-xl hover:bg-slate-600 hover:border-slate-500 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200 outline-none"
+                className="h-14 px-4 text-base bg-slate-700 border-slate-600 text-white placeholder-slate-400 rounded-xl hover:bg-slate-600 hover:border-slate-500 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200 outline-none autofill:bg-slate-700 autofill:text-white"
               />
 
               <Input
@@ -125,7 +125,7 @@ export function Login() {
                 placeholder="Senha"
                 required
                 showPasswordToggle
-                className="h-14 px-4 text-base bg-slate-700 border-slate-600 text-white placeholder-slate-400 rounded-xl hover:bg-slate-600 hover:border-slate-500 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200 outline-none"
+                className="h-14 px-4 text-base bg-slate-700 border-slate-600 text-white placeholder-slate-400 rounded-xl hover:bg-slate-600 hover:border-slate-500 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200 outline-none autofill:bg-slate-700 autofill:text-white"
               />
             </div>
 
@@ -172,7 +172,7 @@ export function Login() {
           </div>
 
           {/* Social Login */}
-          <div className="mt-8">
+          <div className="mt-12">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-slate-600"></div>
@@ -184,7 +184,7 @@ export function Login() {
             </div>
           </div>
 
-            <div className="mt-6 grid grid-cols-2 gap-4">
+            <div className="mt-8 grid grid-cols-2 gap-4">
               <button className="w-full inline-flex items-center justify-center py-4 px-4 border border-slate-600 rounded-xl shadow-sm bg-slate-700 text-sm font-medium text-slate-300 hover:bg-slate-600 transition-all duration-200 hover:shadow-md">
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path

@@ -111,7 +111,7 @@ export function Journey() {
               placeholder="Como foi seu dia?"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full h-9 px-3 text-sm border border-slate-600 rounded-lg hover:bg-slate-600 hover:border-slate-500 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200 bg-slate-700 text-white placeholder-slate-400 shadow-sm outline-none"
+              className="w-full h-9 px-3 text-sm border border-slate-600 rounded-lg hover:bg-slate-600 hover:border-slate-500 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600 transition-all duration-200 bg-slate-700 text-white placeholder-slate-400 shadow-sm outline-none autofill:bg-slate-700 autofill:text-white"
               disabled={isLoading}
             />
           </div>
@@ -126,7 +126,7 @@ export function Journey() {
                      focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600
                      bg-slate-700 text-white placeholder-slate-400 resize-none text-sm transition-all duration-200
                      disabled:opacity-50 disabled:cursor-not-allowed shadow-sm outline-none
-                     mb-3 min-h-0"
+                     mb-3 min-h-0 autofill:bg-slate-700 autofill:text-white"
             disabled={isLoading}
           />
 
@@ -134,7 +134,7 @@ export function Journey() {
           <button
             type="submit"
             disabled={isLoading || !title.trim() || !text.trim()}
-            className="w-full h-11 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 active:from-emerald-800 active:to-teal-800 disabled:from-slate-700 disabled:to-slate-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:scale-100 text-sm flex-shrink-0"
+            className="w-full h-12 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:from-emerald-600 hover:via-teal-600 hover:to-cyan-600 active:from-emerald-700 active:via-teal-700 active:to-cyan-700 disabled:from-slate-700 disabled:to-slate-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-emerald-500/25 hover:scale-[1.03] active:scale-[0.97] disabled:cursor-not-allowed disabled:scale-100 text-sm flex-shrink-0 border border-emerald-400/20 hover:border-emerald-400/40"
           >
             {isLoading ? (
               <div className="flex items-center justify-center space-x-2">
