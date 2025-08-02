@@ -29,11 +29,44 @@ export const useStore = create<CombinedStore>()(
       journey: createJourneySlice(set, get, store),
       resetAll: () => {
         set(
-          (state: CombinedStore) => ({
-            auth: { ...state.auth, ...initialAuthState },
-            user: { ...state.user, ...initialUserState },
-            app: { ...state.app, ...initialAppState },
-            journey: { ...state.journey, ...initialJourneyState },
+          () => ({
+            auth: {
+              ...initialAuthState,
+              setAuthenticated: get().auth.setAuthenticated,
+              setAccessToken: get().auth.setAccessToken,
+              setRefreshToken: get().auth.setRefreshToken,
+              setTokenExpiration: get().auth.setTokenExpiration,
+              login: get().auth.login,
+              logout: get().auth.logout,
+              clearAuth: get().auth.clearAuth,
+            },
+            user: {
+              ...initialUserState,
+              setUser: get().user.setUser,
+              setName: get().user.setName,
+              setEmail: get().user.setEmail,
+              setPassword: get().user.setPassword,
+              setBirthDate: get().user.setBirthDate,
+              setPhone: get().user.setPhone,
+              setAge: get().user.setAge,
+              setRole: get().user.setRole,
+              clearUser: get().user.clearUser,
+            },
+            app: {
+              ...initialAppState,
+              setLoading: get().app.setLoading,
+              clearApp: get().app.clearApp,
+            },
+            journey: {
+              ...initialJourneyState,
+              addEntry: get().journey.addEntry,
+              updateEntry: get().journey.updateEntry,
+              deleteEntry: get().journey.deleteEntry,
+              setCurrentEntry: get().journey.setCurrentEntry,
+              loadEntries: get().journey.loadEntries,
+              setJourneyLoading: get().journey.setJourneyLoading,
+              clearJourney: get().journey.clearJourney,
+            },
           }),
           false,
           "global/resetAll"

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Card } from "../components/ui/Card";
 import { Input } from "../components/ui/Input";
 import { Button } from "../components/ui/Button";
-import { useAccessToken, useAddJourneyEntry, useSetJourneyLoading, useIsJourneyLoading } from "../store";
+import { useAccessToken, useAddJourneyEntry, useSetJourneyLoading, useIsJourneyLoading, useResetAll } from "../store";
 import { journeyService } from "../services/journeyService";
 
 export function Journey() {
@@ -15,6 +15,7 @@ export function Journey() {
   const addEntry = useAddJourneyEntry();
   const setLoading = useSetJourneyLoading();
   const isLoading = useIsJourneyLoading();
+  const resetAll = useResetAll();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,6 +61,10 @@ export function Journey() {
   };
 
   const handleLogout = () => {
+    // Limpa todo o estado global
+    resetAll();
+    
+    // Redireciona para login
     navigate("/login");
   };
 
@@ -71,7 +76,8 @@ export function Journey() {
           <div className="flex justify-between items-center mb-6">
             <Button
               onClick={handleViewHistory}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              disabled
+              className="bg-gray-400 text-gray-600 cursor-not-allowed"
             >
               Ver Histórico
             </Button>
