@@ -212,7 +212,7 @@ export function Journey() {
                   title={listening ? "Parar de escutar" : "Falar para escrever"}
                 >
                   {listening ? (
-                    <Mic className="w-5 h-5" />
+                    <Mic className="w-5 h-5 animate-pulse" />
                   ) : (
                     <MicOff className="w-5 h-5" />
                   )}
