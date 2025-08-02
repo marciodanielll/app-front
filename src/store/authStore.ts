@@ -29,11 +29,13 @@ export const useAuthStore = create<AuthStore>()(
       accessTokenExpiresAt: null,
 
       setAuthenticated: (authenticated: boolean) =>
-        set({ isAuthenticated: authenticated }),
-      setAccessToken: (token: string | null) => set({ accessToken: token }),
-      setRefreshToken: (token: string | null) => set({ refreshToken: token }),
+        set({ isAuthenticated: authenticated }, false, "auth/setAuthenticated"),
+      setAccessToken: (token: string | null) => 
+        set({ accessToken: token }, false, "auth/setAccessToken"),
+      setRefreshToken: (token: string | null) => 
+        set({ refreshToken: token }, false, "auth/setRefreshToken"),
       setTokenExpiration: (expiresAt: Date | null) =>
-        set({ accessTokenExpiresAt: expiresAt }),
+        set({ accessTokenExpiresAt: expiresAt }, false, "auth/setTokenExpiration"),
 
       login: (accessToken: string, refreshToken: string, expiresAt: Date) =>
         set({
@@ -41,7 +43,7 @@ export const useAuthStore = create<AuthStore>()(
           refreshToken,
           accessTokenExpiresAt: expiresAt,
           isAuthenticated: true,
-        }),
+        }, false, "auth/login"),
 
       logout: () =>
         set({
@@ -49,7 +51,7 @@ export const useAuthStore = create<AuthStore>()(
           refreshToken: null,
           accessTokenExpiresAt: null,
           isAuthenticated: false,
-        }),
+        }, false, "auth/logout"),
 
       clearAuth: () =>
         set({
@@ -57,7 +59,7 @@ export const useAuthStore = create<AuthStore>()(
           accessToken: null,
           refreshToken: null,
           accessTokenExpiresAt: null,
-        }),
+        }, false, "auth/clearAuth"),
     }),
     {
       name: "auth-store",

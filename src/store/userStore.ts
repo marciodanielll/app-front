@@ -40,34 +40,44 @@ export const useUserStore = create<UserStore>()(
       role: null,
 
       setUser: (user: User) =>
-        set({
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          password: user.password,
-          birthDate: user.birthDate,
-          phone: user.phone,
-          age: user.age,
-          role: user.role,
-        }),
-      setName: (name: string) => set({ name }),
-      setEmail: (email: string) => set({ email }),
-      setPassword: (password: string) => set({ password }),
-      setBirthDate: (birthDate: string) => set({ birthDate }),
-      setPhone: (phone: string) => set({ phone }),
-      setAge: (age: number) => set({ age }),
-      setRole: (role: string) => set({ role }),
+        set(
+          {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            password: user.password,
+            birthDate: user.birthDate,
+            phone: user.phone,
+            age: user.age,
+            role: user.role,
+          },
+          false,
+          "user/setUser"
+        ),
+      setName: (name: string) => set({ name }, false, "user/setName"),
+      setEmail: (email: string) => set({ email }, false, "user/setEmail"),
+      setPassword: (password: string) =>
+        set({ password }, false, "user/setPassword"),
+      setBirthDate: (birthDate: string) =>
+        set({ birthDate }, false, "user/setBirthDate"),
+      setPhone: (phone: string) => set({ phone }, false, "user/setPhone"),
+      setAge: (age: number) => set({ age }, false, "user/setAge"),
+      setRole: (role: string) => set({ role }, false, "user/setRole"),
       clearUser: () =>
-        set({
-          id: null,
-          name: null,
-          email: null,
-          password: null,
-          birthDate: null,
-          phone: null,
-          age: null,
-          role: null,
-        }),
+        set(
+          {
+            id: null,
+            name: null,
+            email: null,
+            password: null,
+            birthDate: null,
+            phone: null,
+            age: null,
+            role: null,
+          },
+          false,
+          "user/clearUser"
+        ),
     }),
     {
       name: "user-store",

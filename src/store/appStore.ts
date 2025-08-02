@@ -17,8 +17,9 @@ export const useAppStore = create<AppStore>()(
     (set) => ({
       isLoading: false,
 
-      setLoading: (loading: boolean) => set({ isLoading: loading }),
-      clearApp: () => set({ isLoading: false }),
+      setLoading: (loading: boolean) =>
+        set({ isLoading: loading }, false, "app/setLoading"),
+      clearApp: () => set({ isLoading: false }, false, "app/clearApp"),
     }),
     {
       name: "app-store",
