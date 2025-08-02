@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { Card } from "../components/ui/Card";
 import { Button } from "../components/ui/Button";
 import { useJourneyEntries, useDeleteJourneyEntry } from "../store";
 
 export function JourneyHistory() {
+  const navigate = useNavigate();
   const entries = useJourneyEntries();
   const deleteEntry = useDeleteJourneyEntry();
 
@@ -10,6 +12,10 @@ export function JourneyHistory() {
     if (window.confirm("Tem certeza que deseja excluir esta entrada?")) {
       deleteEntry(id);
     }
+  };
+
+  const handleBack = () => {
+    navigate("/journey");
   };
 
   const formatDate = (date: Date | undefined) => {
@@ -24,16 +30,27 @@ export function JourneyHistory() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-4">
       <div className="relative max-w-4xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
-            Histórico da sua Jornada
-          </h1>
-          <p className="text-gray-600 text-lg">
-            Revise e reflita sobre suas experiências passadas
-          </p>
+        <div className="mb-8">
+          <div className="flex items-center justify-start mb-6">
+            <Button
+              onClick={handleBack}
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              ← Voltar
+            </Button>
+          </div>
+          
+          <div className="text-center">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+              Histórico da sua Jornada
+            </h1>
+            <p className="text-gray-600 text-lg">
+              Revise e reflita sobre suas experiências passadas
+            </p>
+          </div>
         </div>
 
         {/* Entries List */}
