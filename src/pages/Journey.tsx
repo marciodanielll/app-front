@@ -36,12 +36,12 @@ export function Journey() {
   useEffect(() => {
     if (transcript && listening) {
       setIsActivelyListening(true);
-      
+
       // Limpa o timeout anterior se existir
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-      
+
       // Define um novo timeout para detectar quando parar de falar
       timeoutRef.current = setTimeout(() => {
         setIsActivelyListening(false);
@@ -268,8 +268,8 @@ export function Journey() {
             {/* Button - Fixed at bottom */}
             <button
               type="submit"
-              disabled={isLoading || !text.trim()}
-              className="w-full py-4 px-6 bg-white text-gray-800 font-semibold rounded-xl hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200"
+              disabled={isLoading}
+              className="w-full py-4 px-6 bg-white text-gray-800 font-semibold rounded-xl hover:bg-green-500 hover:text-white active:bg-green-600 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200"
             >
               <div className="flex items-center justify-center space-x-2">
                 {isLoading ? (

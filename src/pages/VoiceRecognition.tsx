@@ -14,7 +14,6 @@ const VoiceRecognition: React.FC = () => {
   const microphoneRef = useRef<MediaStreamAudioSourceNode | null>(null);
   const animationFrameRef = useRef<number | null>(null);
 
-  // Verifica suporte para reconhecimento de voz
   useEffect(() => {
     const SpeechRecognition =
       (window as any).SpeechRecognition ||
@@ -63,7 +62,6 @@ const VoiceRecognition: React.FC = () => {
     };
   }, []);
 
-  // Função para analisar nível de áudio
   const startAudioAnalysis = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -137,7 +135,6 @@ const VoiceRecognition: React.FC = () => {
     setTranscript("");
   };
 
-  // Calcula a intensidade da pulsação baseada no nível de áudio
   const pulseIntensity = isListening ? Math.min(audioLevel / 50, 3) + 1 : 1;
   const pulseColor =
     audioLevel > 30 ? "#ef4444" : audioLevel > 15 ? "#f59e0b" : "#10b981";
