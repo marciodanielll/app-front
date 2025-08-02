@@ -150,7 +150,7 @@ export function Login() {
                 handleLogin();
               }}
               disabled={isLoading}
-              className="w-full h-14 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 text-white font-semibold rounded-xl transition-colors duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed text-lg"
+              className="w-full h-14 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-700 text-white font-semibold rounded-xl transition-colors duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed text-lg"
             >
               {isLoading ? "Entrando..." : "Entrar"}
             </button>
@@ -158,11 +158,11 @@ export function Login() {
 
           {/* Register link */}
           <div className="mt-8 text-center">
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-slate-300">
               Não tem uma conta?{" "}
               <button
                 onClick={handleRegister}
-                className="text-gray-300 hover:text-white font-semibold transition-colors"
+                className="text-indigo-400 hover:text-indigo-300 font-semibold transition-colors"
               >
                 Cadastre-se
               </button>
@@ -173,17 +173,17 @@ export function Login() {
           <div className="mt-8">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-700"></div>
+              <div className="w-full border-t border-slate-600"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-gray-900 text-gray-400">
+              <span className="px-2 bg-slate-800 text-slate-400">
                 Ou continue com
               </span>
             </div>
           </div>
 
             <div className="mt-6 grid grid-cols-2 gap-4">
-              <button className="w-full inline-flex items-center justify-center py-4 px-4 border border-gray-700 rounded-xl shadow-sm bg-gray-800 text-sm font-medium text-gray-300 hover:bg-gray-700 transition-all duration-200 hover:shadow-md">
+              <button className="w-full inline-flex items-center justify-center py-4 px-4 border border-slate-600 rounded-xl shadow-sm bg-slate-700 text-sm font-medium text-slate-300 hover:bg-slate-600 transition-all duration-200 hover:shadow-md">
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
                   fill="#4285F4"
@@ -205,7 +205,7 @@ export function Login() {
               <span className="ml-2">Google</span>
             </button>
 
-              <button className="w-full inline-flex items-center justify-center py-4 px-4 border border-gray-700 rounded-xl shadow-sm bg-gray-800 text-sm font-medium text-gray-300 hover:bg-gray-700 transition-all duration-200 hover:shadow-md">
+              <button className="w-full inline-flex items-center justify-center py-4 px-4 border border-slate-600 rounded-xl shadow-sm bg-slate-700 text-sm font-medium text-slate-300 hover:bg-slate-600 transition-all duration-200 hover:shadow-md">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M18.8906 14.7969C18.7813 12.1406 21.0156 10.8281 21.125 10.7656C19.8594 8.84375 17.8438 8.5625 17.125 8.53125C15.3906 8.35938 13.7188 9.54688 12.8438 9.54688C11.9531 9.54688 10.5938 8.5625 9.14063 8.59375C7.29688 8.625 5.57813 9.70313 4.60938 11.4688C2.60938 15.0469 4.09375 20.4688 6.01563 23.4688C6.96875 24.9219 8.09375 26.5469 9.59375 26.4844C11.0156 26.4219 11.5625 25.5781 13.3125 25.5781C15.0469 25.5781 15.5625 26.4844 17.0469 26.4531C18.5781 26.4219 19.5469 25.0156 20.4688 23.5469C21.5469 21.8906 21.9688 20.2656 21.9844 20.1875C21.9531 20.1719 18.9219 19.0156 18.8906 14.7969ZM15.9844 6.84375C16.7656 5.9375 17.2813 4.71875 17.1563 3.5C16.0781 3.54688 14.7656 4.25 13.9531 5.125C13.2188 5.90625 12.5625 7.15625 12.7031 8.34375C13.9219 8.4375 15.1719 7.71875 15.9844 6.84375Z" />
               </svg>
