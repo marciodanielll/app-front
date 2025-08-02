@@ -4,7 +4,7 @@ export const useJourneyEntries = () =>
   useStore((state) => state.journey.entries);
 export const useCurrentJourneyEntry = () =>
   useStore((state) => state.journey.currentEntry);
-export const useJourneyLoading = () =>
+export const useIsJourneyLoading = () =>
   useStore((state) => state.journey.isLoading);
 
 export const useAddJourneyEntry = () =>
