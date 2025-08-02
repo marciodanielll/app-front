@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../components/ui/Input";
-import { Button } from "../components/ui/Button";
-import { Card } from "../components/ui/Card";
 import { authService } from "../services/authService";
 import { useLogin, useSetUser, useIsLoading, useSetLoading } from "../store";
 
@@ -65,124 +63,108 @@ export function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center p-3 sm:p-4">
-      {/* Background decoration - hidden on mobile for performance */}
-      <div className="absolute inset-0 overflow-hidden hidden sm:block">
-        <div className="absolute -top-40 -right-40 w-60 h-60 sm:w-80 sm:h-80 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-60 h-60 sm:w-80 sm:h-80 bg-indigo-100 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse"></div>
-      </div>
-
-      {/* Login Card */}
-      <Card variant="glass" className="w-full max-w-sm sm:max-w-md relative">
-        {/* Logo/Icon */}
-        <div className="text-center mb-6 sm:mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl mb-3 sm:mb-4">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex flex-col">
+      {/* Login Container */}
+      <div className="flex-1 flex flex-col justify-center px-6 py-12">
+        <div className="w-full max-w-sm mx-auto">
+          {/* Logo/Icon */}
+          <div className="text-center mb-10">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-600 rounded-3xl mb-4 shadow-lg">
             <svg
-              className="w-8 h-8 sm:w-12 sm:h-12 text-white"
+              className="w-10 h-10 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <circle cx="12" cy="8" r="5" strokeWidth={2} />
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M8.5 10.5L10 12l4-4"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M7 18v1a1 1 0 001 1h8a1 1 0 001-1v-1"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M7 18l1-5h8l1 5H7z"
+                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
               />
             </svg>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-            M.D. Care
+          <h1 className="text-3xl font-bold text-gray-900 mb-1">
+            TCC
           </h1>
+          <p className="text-gray-500 text-sm">Bem-vindo de volta</p>
         </div>
 
-        {/* Form */}
-        <form
-          className="space-y-4 sm:space-y-6"
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleLogin();
-          }}
-        >
+          {/* Form */}
+          <div className="space-y-6">
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+            <div className="bg-red-50 border-l-4 border-red-400 text-red-700 px-4 py-3 rounded-r text-sm">
               {error}
             </div>
           )}
 
-          <Input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            required
-          />
+            <div className="space-y-5">
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                required
+                className="h-14 px-4 text-base border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
 
-          <Input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Senha"
-            required
-            showPasswordToggle
-          />
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Senha"
+                required
+                showPasswordToggle
+                className="h-14 px-4 text-base border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0">
+          <div className="flex items-center justify-between">
             <label className="flex items-center">
               <input
                 type="checkbox"
-                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
               />
-              <span className="ml-2 text-sm text-gray-600">Lembrar de mim</span>
+              <span className="ml-3 text-sm text-gray-600">Lembrar de mim</span>
             </label>
             <button
               type="button"
-              className="text-sm text-blue-600 hover:text-blue-500 font-medium text-left sm:text-right"
+              className="text-sm text-blue-600 hover:text-blue-700 font-medium"
             >
               Esqueceu a senha?
             </button>
           </div>
 
-          <Button
-            type="submit"
-            variant="gradient"
-            className="w-full"
-            disabled={isLoading}
-          >
-            {isLoading ? "Entrando..." : "Entrar"}
-          </Button>
-        </form>
-
-        {/* Register link */}
-        <div className="mt-6 sm:mt-8 text-center">
-          <p className="text-sm sm:text-base text-gray-600">
-            Não tem uma conta?{" "}
             <button
-              onClick={handleRegister}
-              className="text-blue-600 hover:text-blue-500 font-semibold"
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                handleLogin();
+              }}
+              disabled={isLoading}
+              className="w-full h-14 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold rounded-xl transition-colors duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed text-lg"
             >
-              Cadastre-se
+              {isLoading ? "Entrando..." : "Entrar"}
             </button>
-          </p>
         </div>
 
-        {/* Social Login */}
-        <div className="mt-6 sm:mt-8">
+          {/* Register link */}
+          <div className="mt-8 text-center">
+            <p className="text-sm text-gray-600">
+              Não tem uma conta?{" "}
+              <button
+                onClick={handleRegister}
+                className="text-blue-600 hover:text-blue-700 font-semibold transition-colors"
+              >
+                Cadastre-se
+              </button>
+            </p>
+          </div>
+
+          {/* Social Login */}
+          <div className="mt-8">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-300"></div>
@@ -194,8 +176,8 @@ export function Login() {
             </div>
           </div>
 
-          <div className="mt-6 grid grid-cols-2 gap-3">
-            <button className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors">
+            <div className="mt-6 grid grid-cols-2 gap-4">
+              <button className="w-full inline-flex items-center justify-center py-4 px-4 border border-gray-200 rounded-xl shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200 hover:shadow-md">
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
                   fill="#4285F4"
@@ -217,15 +199,16 @@ export function Login() {
               <span className="ml-2">Google</span>
             </button>
 
-            <button className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors">
+              <button className="w-full inline-flex items-center justify-center py-4 px-4 border border-gray-200 rounded-xl shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200 hover:shadow-md">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M18.8906 14.7969C18.7813 12.1406 21.0156 10.8281 21.125 10.7656C19.8594 8.84375 17.8438 8.5625 17.125 8.53125C15.3906 8.35938 13.7188 9.54688 12.8438 9.54688C11.9531 9.54688 10.5938 8.5625 9.14063 8.59375C7.29688 8.625 5.57813 9.70313 4.60938 11.4688C2.60938 15.0469 4.09375 20.4688 6.01563 23.4688C6.96875 24.9219 8.09375 26.5469 9.59375 26.4844C11.0156 26.4219 11.5625 25.5781 13.3125 25.5781C15.0469 25.5781 15.5625 26.4844 17.0469 26.4531C18.5781 26.4219 19.5469 25.0156 20.4688 23.5469C21.5469 21.8906 21.9688 20.2656 21.9844 20.1875C21.9531 20.1719 18.9219 19.0156 18.8906 14.7969ZM15.9844 6.84375C16.7656 5.9375 17.2813 4.71875 17.1563 3.5C16.0781 3.54688 14.7656 4.25 13.9531 5.125C13.2188 5.90625 12.5625 7.15625 12.7031 8.34375C13.9219 8.4375 15.1719 7.71875 15.9844 6.84375Z" />
               </svg>
               <span className="ml-2">Apple</span>
             </button>
+            </div>
           </div>
         </div>
-      </Card>
+      </div>
     </div>
   );
 }

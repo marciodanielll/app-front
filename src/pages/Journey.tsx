@@ -1,8 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Card } from "../components/ui/Card";
-import { Input } from "../components/ui/Input";
-import { Button } from "../components/ui/Button";
 import { useAccessToken, useAddJourneyEntry, useSetJourneyLoading, useIsJourneyLoading, useResetAll } from "../store";
 import { journeyService } from "../services/journeyService";
 
@@ -61,82 +58,98 @@ export function Journey() {
   };
 
   const handleLogout = () => {
-    // Limpa todo o estado global
     resetAll();
-    
-    // Redireciona para login
     navigate("/login");
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-3 sm:p-4 lg:p-6">
-      <div className="relative max-w-full sm:max-w-2xl lg:max-w-3xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-6 sm:mb-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0 mb-4 sm:mb-6">
-            <Button
-              onClick={handleViewHistory}
-              disabled
-              className="w-full sm:w-auto bg-gray-400 text-gray-600 cursor-not-allowed text-sm sm:text-base"
-            >
-              Ver Histórico
-            </Button>
-            <Button
-              onClick={handleLogout}
-              className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white text-sm sm:text-base"
-            >
-              Sair
-            </Button>
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      {/* Header - Fixed at top */}
+      <div className="bg-white shadow-sm">
+        {/* Navigation Bar */}
+        <div className="flex items-center justify-between p-3">
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+            <div>
+              <h1 className="text-sm font-bold text-gray-900">TCC</h1>
+              <p className="text-xs text-gray-500">Diário Pessoal</p>
+            </div>
           </div>
           
-          <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3 sm:mb-4">
-            TCC
-          </h1>
-          <p className="text-gray-600 text-base sm:text-lg px-2 sm:px-0">
-            Documente seus pensamentos e reflexões do dia
-          </p>
+          <div className="flex items-center space-x-2">
+            <button onClick={handleViewHistory} disabled className="p-2 bg-gray-100 rounded-lg opacity-50 cursor-not-allowed">
+              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </button>
+            <button onClick={handleLogout} className="p-2 bg-red-50 hover:bg-red-100 rounded-lg transition-colors">
+              <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+            </button>
+          </div>
         </div>
+        
+        {/* Welcome Section */}
+        <div className="text-center px-3 pb-3">
+          <h2 className="text-sm font-semibold text-gray-900">Como você está se sentindo hoje?</h2>
+          <p className="text-xs text-gray-600">Documente seus pensamentos e reflexões do dia</p>
+        </div>
+      </div>
 
-        {/* Form */}
-        <Card variant="glass" className="p-4 sm:p-6 lg:p-8">
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-            <div>
-              <Input
-                type="text"
-                placeholder="Título da sua reflexão..."
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="text-base sm:text-lg"
-                disabled={isLoading}
-              />
-            </div>
+      {/* Main Content - Takes all available space */}
+      <div className="flex-1 p-3 flex flex-col min-h-0">
+        <form onSubmit={handleSubmit} className="flex-1 flex flex-col min-h-0">
+          {/* Title Input - Compact */}
+          <div className="mb-3 flex-shrink-0">
+            <input
+              type="text"
+              placeholder="Como foi seu dia?"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full h-9 px-3 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white focus:bg-white shadow-sm"
+              disabled={isLoading}
+            />
+          </div>
 
-            <div>
-              <textarea
-                placeholder="Escreva aqui seus pensamentos, sentimentos ou reflexões do dia..."
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                className="w-full min-h-[200px] sm:min-h-[300px] p-3 sm:p-4 border border-gray-200 rounded-lg 
-                         focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                         bg-white/70 backdrop-blur-sm resize-none text-sm sm:text-base
-                         disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled={isLoading}
-              />
-            </div>
+          {/* Textarea - Takes ALL remaining space */}
+          <textarea
+            placeholder="Conte-me sobre seus pensamentos, sentimentos e reflexões de hoje..."
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            className="flex-1 w-full p-3 border border-gray-200 rounded-lg 
+                     focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                     bg-white resize-none text-sm transition-all duration-200
+                     disabled:opacity-50 disabled:cursor-not-allowed shadow-sm
+                     mb-3 min-h-0"
+            disabled={isLoading}
+          />
 
-            <div className="pt-2">
-              <Button
-                type="submit"
-                disabled={isLoading || !title.trim() || !text.trim()}
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 
-                         hover:from-blue-700 hover:to-purple-700 text-white text-sm sm:text-base
-                         disabled:opacity-50 disabled:cursor-not-allowed py-3 sm:py-2"
-              >
-                {isLoading ? "Salvando..." : "Salvar Entrada"}
-              </Button>
-            </div>
-          </form>
-        </Card>
+          {/* Button - Fixed at bottom */}
+          <button
+            type="submit"
+            disabled={isLoading || !title.trim() || !text.trim()}
+            className="w-full h-11 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed text-sm flex-shrink-0"
+          >
+            {isLoading ? (
+              <div className="flex items-center justify-center space-x-2">
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <span>Salvando...</span>
+              </div>
+            ) : (
+              <div className="flex items-center justify-center space-x-2">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Salvar Reflexão</span>
+              </div>
+            )}
+          </button>
+        </form>
       </div>
     </div>
   );
