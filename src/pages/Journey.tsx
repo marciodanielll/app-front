@@ -95,15 +95,15 @@ export function Journey() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-vital-700 to-vital-900 flex flex-col">
       {/* Header - Fixed at top */}
-      <div className="bg-slate-800 shadow-sm">
+      <div className="bg-white/10 backdrop-blur-sm shadow-lg border-b border-white/20">
         {/* Navigation Bar */}
-        <div className="flex items-center justify-between p-3">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+        <div className="flex items-center justify-between p-4">
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-white rounded-2xl flex items-center justify-center shadow-lg border border-vital-200">
               <svg
-                className="w-5 h-5 text-indigo-200"
+                className="w-6 h-6 text-vital-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -117,8 +117,12 @@ export function Journey() {
               </svg>
             </div>
             <div>
-              <h1 className="text-sm font-bold text-white">TCC</h1>
-              <p className="text-xs text-slate-300">Diário Pessoal</p>
+              <h1 className="text-lg font-bold text-white drop-shadow-lg">
+                TCC
+              </h1>
+              <p className="text-xs text-white/80 drop-shadow-md">
+                Diário Pessoal
+              </p>
             </div>
           </div>
 
@@ -126,10 +130,10 @@ export function Journey() {
             <button
               onClick={handleViewHistory}
               disabled
-              className="p-2 bg-slate-700 rounded-lg opacity-50 cursor-not-allowed"
+              className="p-3 bg-white/10 rounded-xl opacity-50 cursor-not-allowed backdrop-blur-sm border border-white/20"
             >
               <svg
-                className="w-4 h-4 text-slate-500"
+                className="w-5 h-5 text-white/60"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -144,10 +148,10 @@ export function Journey() {
             </button>
             <button
               onClick={handleLogout}
-              className="p-2 bg-red-500/20 hover:bg-red-500/30 rounded-lg transition-colors"
+              className="p-3 bg-white/10 hover:bg-white/20 rounded-xl transition-all duration-200 backdrop-blur-sm border border-white/20 hover:border-white/30"
             >
               <svg
-                className="w-4 h-4 text-red-400"
+                className="w-5 h-5 text-white/90"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -164,95 +168,88 @@ export function Journey() {
         </div>
 
         {/* Welcome Section */}
-        <div className="text-center px-3 pb-3">
-          <h2 className="text-sm font-semibold text-white">
+        <div className="text-center px-4 pb-4">
+          <h2 className="text-xl font-bold text-white drop-shadow-lg mb-1">
             Como você está se sentindo hoje?
           </h2>
-          <p className="text-xs text-slate-300">
+          <p className="text-sm text-white/80 drop-shadow-md">
             Documente seus pensamentos e reflexões do dia
           </p>
         </div>
       </div>
 
       {/* Main Content - Takes all available space */}
-      <div className="flex-1 p-3 flex flex-col min-h-0">
-        <form onSubmit={handleSubmit} className="flex-1 flex flex-col min-h-0">
-          {/* Textarea - Takes ALL remaining space */}
-          <div className="flex-1 min-h-0 relative mb-3">
-            <textarea
-              placeholder="Conte-me sobre seus pensamentos, sentimentos e reflexões de hoje..."
-              value={text + (listening && transcript ? " " + transcript : "")}
-              onChange={(e) => setText(e.target.value)}
-              className="absolute inset-0 w-full h-full p-3 pr-12 border border-slate-600 rounded-lg 
-                       hover:bg-slate-600 hover:border-slate-500
-                       focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-slate-600
-                       bg-slate-700 text-white placeholder-slate-400 resize-none text-sm transition-all duration-200
-                       disabled:opacity-50 disabled:cursor-not-allowed shadow-sm outline-none
-                       autofill:bg-slate-700 autofill:text-white"
-              disabled={isLoading}
-            />
-            {browserSupportsSpeechRecognition && (
-              <button
-                type="button"
-                onClick={listening ? stopListening : startListening}
-                className={`absolute top-3 right-3 p-2 rounded-md transition-all duration-200 z-10 ${
-                  listening
-                    ? "bg-red-500 hover:bg-red-600 text-white shadow-lg shadow-red-500/25"
-                    : "bg-blue-500 hover:bg-blue-600 text-white shadow-lg hover:shadow-blue-500/25"
-                }`}
-                disabled={isLoading}
-              >
-                {listening ? (
-                  <MicOff className="w-4 h-4" />
-                ) : (
-                  <Mic className="w-4 h-4" />
-                )}
-              </button>
-            )}
-          </div>
-
-          {/* Speech Recognition Status */}
-          {listening && (
-            <div className="mb-3 flex items-center justify-center space-x-2 p-2 bg-blue-500/20 border border-blue-400/30 rounded-lg">
-              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-              <span className="text-sm text-blue-300">Escutando...</span>
-              {transcript && (
-                <span className="text-xs text-slate-300 italic">
-                  "{transcript}"
-                </span>
-              )}
-            </div>
-          )}
-
-          {!browserSupportsSpeechRecognition && (
-            <div className="mb-3 p-2 bg-yellow-500/20 border border-yellow-400/30 rounded-lg">
-              <span className="text-sm text-yellow-300">
-                Seu navegador não suporta reconhecimento de voz
-              </span>
-            </div>
-          )}
-
-          {/* Button - Fixed at bottom */}
-          <button
-            type="submit"
-            disabled={isLoading || !text.trim()}
-            className="w-full h-12 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:from-emerald-600 hover:via-teal-600 hover:to-cyan-600 active:from-emerald-700 active:via-teal-700 active:to-cyan-700 disabled:from-slate-700 disabled:to-slate-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-emerald-500/25 hover:scale-[1.03] active:scale-[0.97] disabled:cursor-not-allowed disabled:scale-100 text-sm flex-shrink-0 border border-emerald-400/20 hover:border-emerald-400/40"
+      <div className="flex-1 px-6 py-4 flex flex-col min-h-0">
+        <div className="w-full max-w-2xl mx-auto flex-1 flex flex-col min-h-0">
+          <form
+            onSubmit={handleSubmit}
+            className="flex-1 flex flex-col min-h-0"
           >
-            <div className="flex items-center justify-center space-x-2">
-              {isLoading ? (
-                <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  <span>Salvando...</span>
-                </>
-              ) : (
-                <>
-                  <Save className="w-5 h-5" />
-                  <span>Salvar Reflexão</span>
-                </>
+            {/* Textarea - Takes ALL remaining space */}
+            <div className="flex-1 min-h-0 relative mb-6">
+              <textarea
+                placeholder="Conte-me sobre seus pensamentos, sentimentos e reflexões de hoje..."
+                value={text + (listening && transcript ? " " + transcript : "")}
+                onChange={(e) => setText(e.target.value)}
+                className="absolute inset-0 w-full h-full p-4 pr-16 border border-gray-200 rounded-2xl 
+                         hover:bg-white hover:border-vital-400
+                         focus:ring-2 focus:ring-vital-500 focus:border-vital-500 focus:bg-white
+                         bg-white text-gray-800 placeholder-gray-400 resize-none text-base transition-all duration-200
+                         disabled:opacity-50 disabled:cursor-not-allowed shadow-lg outline-none
+                         autofill:bg-white autofill:text-gray-800"
+                disabled={isLoading}
+              />
+              {browserSupportsSpeechRecognition && (
+                <button
+                  type="button"
+                  onClick={listening ? stopListening : startListening}
+                  className={`absolute top-4 right-4 p-3 rounded-xl transition-all duration-200 z-10 shadow-lg ${
+                    listening
+                      ? "bg-gradient-to-r from-vital-500 to-vital-600 hover:from-vital-600 hover:to-vital-700 text-white shadow-vital-500/25"
+                      : "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white shadow-red-500/25"
+                  }`}
+                  disabled={isLoading}
+                  title={listening ? "Parar de escutar" : "Falar para escrever"}
+                >
+                  {listening ? (
+                    <Mic className="w-5 h-5" />
+                  ) : (
+                    <MicOff className="w-5 h-5" />
+                  )}
+                </button>
               )}
             </div>
-          </button>
-        </form>
+
+            {!browserSupportsSpeechRecognition && (
+              <div className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
+                <span className="text-sm text-yellow-700 font-medium">
+                  Seu navegador não suporta reconhecimento de voz
+                </span>
+              </div>
+            )}
+
+            {/* Button - Fixed at bottom */}
+            <button
+              type="submit"
+              disabled={isLoading || !text.trim()}
+              className="w-full py-4 px-6 bg-white text-gray-800 font-semibold rounded-xl hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200"
+            >
+              <div className="flex items-center justify-center space-x-2">
+                {isLoading ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
+                    <span className="text-gray-800">Salvando...</span>
+                  </>
+                ) : (
+                  <>
+                    <div className="w-5 h-5 text-gray-800">📄</div>
+                    <span className="text-gray-800">Salvar Reflexão</span>
+                  </>
+                )}
+              </div>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
