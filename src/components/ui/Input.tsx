@@ -70,7 +70,7 @@ export function Input({
           <button
             type="button"
             onClick={togglePasswordVisibility}
-            className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700 transition-colors"
+            className="absolute inset-y-0 right-0 flex items-center pr-3 text-white hover:text-gray-200 transition-colors"
           >
             {showPassword ? (
               // Ícone de olho aberto (mostrando senha)
